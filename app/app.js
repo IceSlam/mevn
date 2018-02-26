@@ -25,6 +25,5 @@ const routes = require('./routes/routes');
 app.use(routes);
 
 
-console.log('Hello :D');
 
 app.listen(process.env.PORT);
