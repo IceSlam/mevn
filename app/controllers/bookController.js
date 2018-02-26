@@ -29,3 +29,12 @@ exports.post_create = function (req, res) {
 
     book.save();
 };
+
+
+exports.get_delete = function (req) {
+    let id = req.params.id;
+
+    Book.findById(id).remove(function (err, response) {
+        if (err) return handleError(err);
+    });
+};

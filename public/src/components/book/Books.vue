@@ -6,6 +6,8 @@
                 <router-link class="route" :to="'/book/' + book._id">
                     {{ book.title }} <span>by</span> {{ book.author }}
                 </router-link>
+
+                <a href="#/books" class="x" v-on:click="deleteBook(book._id)">x</a>
             </p>
 
         back to
@@ -28,7 +30,11 @@
         },
 
         mounted () {
-            this.getBooks()
+            this.getBooks();
+        },
+
+        updated: function () {
+            this.getBooks();
         },
 
         methods: {
@@ -39,6 +45,10 @@
                 } catch (error) {
                     console.error(error);
                 }
+            },
+
+            deleteBook(id) {
+                axios.get('http://localhost:8000/book/delete/' + id);
             }
         }
     }
@@ -69,5 +79,10 @@
     }
     .route{
         text-decoration: none;
+    }
+    .x {
+        font-size: 14px;
+        font-weight: bold;
+        color: red;
     }
 </style>
